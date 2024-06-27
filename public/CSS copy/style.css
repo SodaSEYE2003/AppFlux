@@ -1,0 +1,361 @@
+/*General Styles*/
+body{
+    font-family: Lucida Sans;
+}
+.sections{
+    padding: 20px 0;
+}
+
+.overlay{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,48)
+    z-index 0;
+}
+
+.section-header .section-title{
+    font-size: 40px;
+}
+
+.section-header .line{
+    width: 150px;
+    background: #ddd;
+    height: 3px;
+    margin: auto;
+}
+.section-header .line span{
+    display:block ;
+    width: 100px;
+    height: 4px;
+    background-color: #b6382f;
+    margin: auto;
+    position: relative;
+    bottom: 0.5px;
+}
+
+.section-header p{
+    width: 50%;
+    color: #888;
+    margin: 20px auto;
+    line-height: 1.5;
+}
+
+/*Header*/
+header{
+    height: auto;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+    background: #fff;
+}
+header i.icon{
+    position: absolute;
+    right: 30px;
+    top: 32px;
+    z-index: 10;
+    display: none;
+}
+
+header .logo h2{
+    font-size: 35px;
+    color:  #4682B4 ;
+}
+
+header nav .nav-list{
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 0;
+}
+header nav .nav-list .button{
+    background: #b6382f;
+    color:#272525 ;
+    width: 100px;
+    text-align: center;
+    border-radius: 5px 5px 5px 5px;
+    padding-top: 0px;
+    margin-top: 8px;
+    vertical-align: middle;
+}
+header nav .nav-list .button a{
+    display: block;
+    padding: 0px 0;
+    margin: 0px 0;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    color:#fff ;
+} 
+header nav .nav-list .button a:hover{
+    color:#0a0000;
+}
+
+header nav .nav-list .list a{
+    display: block;
+    padding: 15px 0;
+    margin: 9px 0;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    color:#c72c2c ;
+}
+
+header nav .nav-list .list a:hover{
+    color:#000;
+}
+
+.sticky{
+   background: #88bbff; 
+   color: #fff;
+}
+@media(max-width:575px){
+    header{
+        background: #000;
+    }
+    header nav .nav-list{
+        display:none;
+        text-align: center;
+        padding: 0;
+    }
+    header .logo{
+        text-align: center;
+    }
+    header i.icon{
+        position: absolute;
+        display: block;
+    }
+    .section-header p{
+        width: 85%;
+    }
+}
+/* home Sections*/
+.home {
+    height: 640px;
+    position: relative;
+    overflow: hidden; /* Assure que le contenu ne dépasse pas */
+}
+
+.home::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%; /* Ajustez selon la largeur souhaitée */
+    height: 100%;
+    background-image: url('../Images/Home/import.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1; /* Place l'image derrière le contenu */
+}
+
+/*.home .home-content {
+    position: absolute;
+    top: 100%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+    padding: 50px; /* Ajoute un padding intérieur 
+}*/
+
+
+.home .home-title {
+    color:#4682B4; /* Couleur du texte */
+    font-size: 30px;
+    text-align: center;
+    line-height: 1;
+    content: "";
+    position: absolute;
+    bottom: 350px;
+    right: 1px;
+    display: flex;
+    align-items: center; /* Centrer verticalement */
+    padding: 10px;
+    width: 100%;
+    background-color: #FFFFFF ; /* Arrière-plan bleu Steel */
+    border-radius: 5px; /* Optionnel : pour adoucir les coins */
+}
+
+
+
+/*.home .home-desc {
+    color:  #b6382f;
+    font-size: 16px;
+    text-align: center;
+    line-height: 1.8;
+    margin-bottom:130px;
+    width: 30%; 
+
+}*/
+.search-bar {
+    position: absolute;
+    bottom: 300px;
+    right: 20px;
+    display: flex;
+    flex-direction: row; /* Aligner les éléments horizontalement */
+    align-items: center; /* Centrer verticalement */
+    z-index: 2;
+   /* background-color: rgba(255, 255, 255, 0.9); /* Ajout d'un fond semi-transparent */
+    padding: 10px;
+    border-radius: 5px;
+    width: 85%;
+}
+
+.search-bar input {
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px; /* Espace entre les éléments */
+}
+
+.search-bar button {
+    padding: 10px 20px;
+    background-color: #b6382f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.search-bar input:focus + .dropdown-content,
+.search-bar input:active + .dropdown-content {
+    display: block;
+}
+
+.search-bar .dropdown-content p {
+    padding: 12px 16px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.search-bar .dropdown-content p:hover {
+    background-color: #f1f1f1;
+}
+
+
+
+
+@media (max-width: 575px) {
+    .home .home-title {
+        font-size: 22px;
+    }
+    .home .button {
+        margin-bottom: 10px;
+    }
+}
+
+/* About Us*/
+.about .about-info h3{
+    font-size: 25px;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+.about .about-info h3 span{
+    color: #b6382f;
+}
+.about .about-info .about-info-desc{
+    line-height: 1.8;
+    color: #888;
+    margin-bottom: 20px;
+}
+.about .about-info .about-info-btn{
+    background-color: #b6382f;
+    padding: 10px 20px;
+    border: 0;
+    color: #fff;
+    font-weight:bold;
+    margin-bottom: 15px;
+}
+
+.about .about-img img{
+    width: 100%;
+}
+@media(max-width:575px){
+    .about .about-info h3{
+        font-size: 20px;
+    }
+}
+@media(max-width:576px) and (max-width:768px) {
+    .about .about-info{
+       text-align: center;
+    }
+}
+/*Pour les services*/
+.services{
+    background: #f7f7f7;
+}
+.services .serv{
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+.services .serv .icon{
+    background:  #b6382f;
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+    color: #fff;
+    border-radius: 50%;
+}
+.services .serv-title{
+    font-weight: bold;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+.services .serv-desc{
+    font-size: 16px;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+/*test pour developpement*/
+.test{
+    margin-bottom: 400px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
