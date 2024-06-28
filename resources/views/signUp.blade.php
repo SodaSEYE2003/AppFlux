@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>page d'inscription</title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" href="CSS/style1.css">
-    </head>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{{asset('CSS copy/Vendors/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('CSS copy/Vendors/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('CSS copy/style1.css')}}">
+    <title>page d'inscription</title>   
+</head>
 
     <body>
         <section id="main">

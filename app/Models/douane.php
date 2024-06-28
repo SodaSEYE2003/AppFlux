@@ -11,8 +11,8 @@ class douane extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    public function FluxMarchandise()
+    public function Marchandise()
     {
-        return $this->hasMany(flux_marchandise::class);
+        return $this->hasMany(marchandises::class);
     }
 }

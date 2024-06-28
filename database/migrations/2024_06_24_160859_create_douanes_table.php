@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('Location');
             $table->unsignedBigInteger('user_douane_id');
             $table->foreign('user_douane_id')->references('id')->on('users');
-            $table->unsignedBigInteger('flux_marchandise_douane_id');
-            $table->foreign('flux_marchandise_douane_id')->references('id')->on('flux_marchandises');
+            $table->unsignedBigInteger('marchandise_douane_id');
+            $table->foreign('marchandise_douane_id')->references('id')->on('marchandises');
             $table->timestamps();
         });
     }

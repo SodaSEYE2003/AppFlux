@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->unsignedBigInteger('flux_marchandise_user_id');
-            $table->foreign('flux_marchandise_user_id')->references('id')->on('flux_marchandises');
+            $table->unsignedBigInteger('marchandise_user_id');
+            $table->foreign('marchandise_user_id')->references('id')->on('marchandises');
             $table->rememberToken();
             $table->timestamps();
         });

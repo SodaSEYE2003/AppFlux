@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('Type');
             $table->date('Date');
             $table->string('Contenu');
-            $table->unsignedBigInteger('flux_marchandise_id');
-            $table->foreign('flux_marchandise_id')->references('id')->on('flux_marchandises');
+            $table->unsignedBigInteger('marchandises_id');
+            $table->foreign('marchandises_id')->references('id')->on('marchandises');
             $table->timestamps();
         });
     }
