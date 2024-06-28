@@ -66,9 +66,9 @@
     <title>Page de Connexion</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="CSS/Vendors/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="stylesheet" href="CSS/style1.css">
+    <link rel="stylesheet" href="{{asset('CSS copy/Vendors/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('CSS copy/Vendors/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{asset('CSS copy/style1.css')}}">
     <style>
         /* Custom CSS */
         /* Add your custom styles here */
@@ -93,10 +93,11 @@
                             <button type="submit" class="btn">Se connecter</button>
                             <div class="switchPage">
                                 <p>Vous n'avez pas de compte ?</p>
-                                <a href="signUp.html">Inscrivez-vous</a>
+                                <a href="signUp.html">créer un compte</a>
                             </div>    
-                            <button class="btn"><a href="index.html">ANNULER</a></button>
+                            
                         </form>
+                        <button class="btn" onclick="window.location.href='{{ route('accueil') }}'">ANNULER</button>
                         <div id="error" class="mt-3 text-danger"></div>
                     
         

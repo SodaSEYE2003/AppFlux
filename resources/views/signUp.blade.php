@@ -37,11 +37,12 @@
 
             <div class="switchPage">
                 <p>vous avez déjà un compte ?</p>
-                <a href="signIn.html">connectez-vous</a>
+                <a href="{{ route('signIn') }}">inscrivez-vous</a>
+
             </div>
         </div>
         
-            <button class="btn"><a href="index.html">ANNULER</a></button>
+        <button class="btn" onclick="window.location.href='{{ route('accueil') }}'">ANNULER</button>
         </section>
     </body>
 </html>

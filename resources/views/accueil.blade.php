@@ -47,30 +47,26 @@
                     </div>
                 </div>
                     <div class="search-bar">
-                    <h1>Choisissez les critères</h1>
-        <form action="{{ route('search') }}" method="POST">
-            @csrf
-            <div class="form-group">
-                <label for="product">Produit:</label>
-                <select class="form-control" id="product" name="product_id">
-                    @foreach($products as $product)
-                        <option value="{{ $product->id }}">{{ $product->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="flux">Flux:</label>
-                <select class="form-control" id="flux" name="flux">
-                    <option value="import">Import</option>
-                    <option value="export">Export</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="country">Pays:</label>
-                <input type="text" class="form-control" id="country" name="country">
-            </div>
-            <button type="submit" class="btn btn-primary">Rechercher</button>
-        </form>
+                        <input type="text" placeholder="Entrer un produit, service ou code du SH">
+                        <div class="dropdown-content">
+                            <p>ANIMAUX VIVANTS ET PRODUITS DU RÈGNE ANIMAL</p>
+                            <p>PRODUITS DU RÈGNE VÉGÉTAL</p>
+                            <p>GRAISSES ET HUILES ANIMALES OU VÉGÉTALES; PRODUITS DE LEUR DISSOCIATION; GRAISSES ALIMENTAIRES ÉLABORÉES; CIRES D'ORIGINE ANIMALE OU VÉGÉTALE</p>
+                            <p>PRODUITS DES INDUSTRIES ALIMENTAIRES; BOISSONS, LIQUIDES ALCOOLIQUES ET VINAIGRES; TABACS ET SUCCÉDANÉS DE TABAC FABRIQUÉS</p>
+                            <p>PRODUITS MINÉRAUX</p>
+                            <p>PRODUITS DES INDUSTRIES CHIMIQUES OU DES INDUSTRIES CONNEXES</p>
+                        </div>
+                        <input type="text" placeholder="Choisir un flux">
+                        <div class="dropdown-content">
+                            <p>Importation</p>
+                            <p>Exportation</p>
+                        </div>
+                        <input type="text" placeholder="Choisir un pays ou une région">
+                        <div class="dropdown-content">
+                            <p>Importation</p>
+                            <p>Exportation</p>
+                        </div>
+                        <button type="button">Rechercher</button>
                     </div>
                
             </div>

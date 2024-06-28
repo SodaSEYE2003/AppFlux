@@ -8,12 +8,9 @@ use App\Models\export;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class marchandises extends Model
-{
-    use HasFactory;
-    protected $guarded = ['id'];
 
-    class Product extends Model {
+
+    class marchandises extends Model {
         use HasFactory;
         protected $fillable = ['name'];
     
@@ -28,4 +25,4 @@ class marchandises extends Model
             return $this->hasMany(douane::class);
         }
     }
-}
+

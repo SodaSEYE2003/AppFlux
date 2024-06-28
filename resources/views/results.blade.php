@@ -13,7 +13,7 @@
         @foreach($results as $result)
             <div class="card mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $result->product->name }}</h5>
+                    <h5 class="card-title">{{ $result->marchandise->name }}</h5>
                     <p class="card-text">Quantité: {{ $result->quantity }} tonnes</p>
                     <p class="card-text">Valeur: {{ $result->value }} USD</p>
                     <p class="card-text">Date de départ: {{ $result->departure_date }}</p>

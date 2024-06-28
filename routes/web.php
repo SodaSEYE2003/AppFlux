@@ -1,16 +1,22 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MarchandiseController;
 
+// Route pour afficher la vue 'accueil'
 Route::get('/', function () {
     return view('accueil');
-});
-// routes/web.php
+})->name('accueil');
+
+// Route pour afficher la vue 'signUp'
 Route::get('/signUp', function () {
     return view('signUp');
 })->name('signUp');
 
-use App\Http\Controllers\MarchandiseController;
+Route::get('/signIn', function () {
+    return view('signIn');
+})->name('signIn');
 
-Route::get('/', [MarchandiseController::class, 'index'])->name('home');
+// Routes contrôlées par MarchandiseController
+Route::get('/home', [MarchandiseController::class, 'index'])->name('home');
 Route::post('/search', [MarchandiseController::class, 'search'])->name('search');
