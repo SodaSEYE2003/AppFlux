@@ -15,14 +15,22 @@ class MarchandiseController extends Controller {
     public function search(Request $request) {
         $marchandises_id = $request->input('marchandises_id');
         $flux = $request->input('flux');
-        $country = $request->input('country');
 
         if ($flux == 'import') {
-            $results = import::where('marchandises_id', $marchandises_id)->where('country_origin', $country)->get();
+            $results = import::where('marchandises_id', $marchandises_id)->with('marchandises')->get();
         } else {
-            $results = export::where('marchandises_id', $marchandises_id)->where('main_destinations', 'LIKE', "%{$country}%")->get();
+            $results = export::where('marchandises_id', $marchandises_id)->with('marchandises')->get();
         }
 
-        return view('results', compact('results', 'flux', 'country'));
+        return view('results', compact('results', 'flux'));
     }
+
+
+public function getProductsByFlux($flux) {
+    // Récupérer les produits en fonction du flux
+    $products = marchandises::where('flux', $flux)->get();
+
+    return response()->json(['products' => $products]);
+}
+
 }

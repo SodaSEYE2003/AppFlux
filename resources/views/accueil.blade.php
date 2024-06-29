@@ -51,31 +51,51 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 
-                <form action="{{ route('search') }}" method="POST">
-                    @csrf
-                    <div class="form-group d-flex align-items-center">
-                        <label for="marchandise" class="content ml-auto">Entrer un produit:</label>
-                        <select class="form-control" id="marchandise" name="marchandises_id">
-                            @foreach($FluxMarchandises as $marchandise)
-                                <option value="{{ $marchandise->id }}">{{ $marchandise->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="form-group d-flex align-items-center">
-                        <label for="flux" class="content ml-auto">Choisir un flux:</label>
-                        <select class="form-control" id="flux" name="flux">
-                            <option value="import">Import</option>
-                            <option value="export">Export</option>
-                        </select>
-                    </div>
-                    <div class="form-group d-flex align-items-center">
-                        <label for="country" class="content ml-auto">Entrer un pays:</label>
-                        <input type="text" class="form-control" id="country" name="country">
-                    </div>
-                    <div class="text-right">
-                        <button type="submit" class="btn">Rechercher</button>
-                    </div>
-                </form>
+            <form action="{{ route('search') }}" method="POST" id="searchForm">
+    <div class="form-group d-flex align-items-center">
+        <label for="flux" class="content ml-auto">Choisir un flux :</label>
+        <select class="form-control" id="flux" name="flux">
+            <option value="import">Import</option>
+            <option value="export">Export</option>
+        </select>
+    </div>
+    @csrf
+    <div class="form-group d-flex align-items-center">
+        <label for="marchandise" class="content ml-auto">Entrer un produit :</label>
+        <select class="form-control" id="marchandise" name="marchandises_id">
+            <!-- Options des produits seront chargées dynamiquement par jQuery -->
+        </select>
+    </div>
+
+    <div class="text-right">
+        <button type="submit" class="btn">Rechercher</button>
+    </div>
+</form>
+
+<!-- Ajouter ce script jQuery pour filtrer dynamiquement les produits -->
+<script>
+    $(document).ready(function () {
+        $('$flux').change(function () {
+            var selectedFlux = $(this).val();
+            var url = "{{ route('getProductsByFlux', ':flux') }}";
+            url = url.replace(':flux', selectedFlux);
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                success: function (response) {
+                    $('#marchandise').empty();
+                    $.each(response.products, function (key, value) {
+                        $('#marchandise').append('<option value="' + value.id + '">' + value.name + '</option>');
+                    });
+                }
+            });
+        });
+
+        // Initialisation pour charger les produits au chargement de la page
+        $('#flux').trigger('change');
+    });
+</script>
             </div>
         </div>
     </div>

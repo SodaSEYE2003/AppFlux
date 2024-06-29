@@ -14,7 +14,7 @@ public function up() {
     Schema::create('exports', function (Blueprint $table) {
         $table->id();
         $table->integer('quantity');
-        $table->decimal('value', 15, 2);
+        $table->integer('value');
         $table->string('main_destinations');
         $table->date('departure_date');
         $table->date('arrival_date');
