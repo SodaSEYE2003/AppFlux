@@ -18,5 +18,5 @@ Route::get('/signIn', function () {
 })->name('signIn');
 
 // Routes contrôlées par MarchandiseController
-Route::get('/home', [MarchandiseController::class, 'index'])->name('home');
+Route::get('/', [MarchandiseController::class, 'index'])->name('home');
 Route::post('/search', [MarchandiseController::class, 'search'])->name('search');

@@ -8,8 +8,8 @@ use App\Models\export;
 
 class MarchandiseController extends Controller {
     public function index() {
-        $marchandises = marchandises::all();
-        return view('welcome', compact('marchandises'));
+        $FluxMarchandises = marchandises::all();
+        return view('accueil', compact('FluxMarchandises'));
     }
 
     public function search(Request $request) {

@@ -190,25 +190,28 @@ header nav .nav-list .list a:hover{
 }*/
 .search-bar {
     position: absolute;
-    bottom: 300px;
+    bottom: 1px;
     right: 20px;
     display: flex;
-    flex-direction: row; /* Aligner les éléments horizontalement */
+    flex-direction: center; /* Aligner les éléments horizontalement */
     align-items: center; /* Centrer verticalement */
     z-index: 2;
    /* background-color: rgba(255, 255, 255, 0.9); /* Ajout d'un fond semi-transparent */
     padding: 10px;
     border-radius: 5px;
-    width: 85%;
+    width: 100%;
+    justify-content: center;
+    height: 70%;
 }
 
-.search-bar input {
-    padding: 10px;
+
+
+.search-bar .form-control {
     font-size: 16px;
-    width: 300px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 10px; /* Espace entre les éléments */
+    width: 375px;
+    margin-right: 200px; /* Espace entre les éléments */
+    height: 30%;
+    
 }
 
 .search-bar button {
@@ -218,7 +221,33 @@ header nav .nav-list .list a:hover{
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    width: 30%;
+
+    
+    
+    
 }
+
+.search-bar .content {
+    padding: 10px 20px;
+    background-color: #b6382f;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.text-right {
+    text-align: center;
+}
+
 
 .search-bar .dropdown-content {
     display: none;
@@ -235,18 +264,10 @@ header nav .nav-list .list a:hover{
 }
 
 .search-bar input:focus + .dropdown-content,
-.search-bar input:active + .dropdown-content {
+.search-bar input:active + .dropdown-content,
+.search-bar select:focus + .dropdown-content,
+.search-bar select:active + .dropdown-content {
     display: block;
-}
-
-.search-bar .dropdown-content p {
-    padding: 12px 16px;
-    margin: 0;
-    cursor: pointer;
-}
-
-.search-bar .dropdown-content p:hover {
-    background-color: #f1f1f1;
 }
 
 
