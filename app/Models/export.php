@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
         use HasFactory;
         protected $fillable = ['marchandises_id', 'quantity', 'value', 'main_destinations', 'departure_date', 'arrival_date'];
         public function Marchandise() {
-            return $this->belongsTo(marchandises::class);
+            return $this->belongsTo(marchandises::class, 'marchandises_id');
         }
     }
 

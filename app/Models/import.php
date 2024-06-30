@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
         protected $fillable = ['marchandises_id', 'quantity', 'value', 'country_origin', 'departure_date', 'arrival_date'];
     
         public function Marchandise() {
-            return $this->belongsTo(marchandises::class);
+            return $this->belongsTo(marchandises::class, 'marchandises_id');
         }
     }
 

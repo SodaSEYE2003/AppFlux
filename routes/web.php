@@ -21,7 +21,7 @@ Route::get('/signIn', function () {
     return view('signIn');
 })->name('signIn');
 
-Route::get('/getProductsByFlux', [MarchandiseController::class, 'getProductsByFlux'])->name('getProductsByFlux');
+Route::get('/getProductsByFlux/{flux}', [MarchandiseController::class, 'getProductsByFlux'])->name('getProductsByFlux');
 
 
 // Routes contrôlées par MarchandiseController

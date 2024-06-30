@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
     class marchandises extends Model {
         use HasFactory;
-        protected $fillable = ['name'];
+      /*  protected $fillable = ['name'];
     
         public function imports() {
             return $this->hasMany(import::class);
@@ -23,6 +23,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
         }
         public function douanes() {
             return $this->hasMany(douane::class);
-        }
+        }*/
+        protected $table = 'marchandises';
     }
 
