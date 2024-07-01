@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('Prenom');
             $table->string('Nom');
+            $table->string('Email');
+            $table->string('MotdePasse');
             $table->unsignedBigInteger('user_administrateur_id');
             $table->foreign('user_administrateur_id')->references('id')->on('users');
             $table->unsignedBigInteger('rapport_administrateur_id');

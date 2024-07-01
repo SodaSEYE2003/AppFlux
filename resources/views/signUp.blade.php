@@ -42,7 +42,7 @@
             </div>
         </div>
         
-        <button class="btn" onclick="window.location.href='{{ route('accueil') }}'">ANNULER</button>
+        <button class="btn" onclick="window.location.href='{{ route('home') }}'">ANNULER</button>
         </section>
     </body>
 </html>

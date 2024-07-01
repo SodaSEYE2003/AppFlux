@@ -97,7 +97,7 @@
                             </div>    
                             
                         </form>
-                        <button class="btn" onclick="window.location.href='{{ route('accueil') }}'">ANNULER</button>
+                        <button class="btn" onclick="window.location.href='{{ route('home') }}'">ANNULER</button>
                         <div id="error" class="mt-3 text-danger"></div>
                     
         
@@ -115,7 +115,7 @@
 
                         if(email === 'admin@gmail.com' && password === 'Passer2022'){
                             // Redirect to admin dashboard
-                            window.location.replace('Admin.html');
+                            window.location.replace('{{ route('admin') }}');
                         } else {
                             $('#error').text('Identifiants administrateur incorrects');
                         }
