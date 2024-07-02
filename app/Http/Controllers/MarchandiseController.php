@@ -3,64 +3,73 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\marchandises;
-use App\Models\import;
-use App\Models\export;
-
-class MarchandiseController extends Controller {
-    public function index()
-    {
-        $FluxMarchandises = marchandises::all();
-        return view('accueil', compact('FluxMarchandises'));
-    }
-
-    public function search(Request $request)
-    {
-        $marchandises_id = $request->input('marchandises_id');
-        $flux = $request->input('flux');
-
-        if ($flux == 'import') {
-            $results = import::where('marchandises_id', $marchandises_id)->with('marchandise')->get();
-        } else {
-            $results = export::where('marchandises_id', $marchandises_id)->with('marchandise')->get();
-        }
-
-        return view('results', compact('results', 'flux'));
-    }
-
-    public function getProductsByFlux($flux)
+class MarchandiseController extends Controller
 {
+    public function liste_marchandise()
+    {
+        $marchandises= marchandises::all();
+        return view('marchandise.listeMarchandise', compact('marchandises'));
+    }
     
-    if ($flux == 'import') {
-        $productIds = import::pluck('marchandises_id')->unique();
-    } else {
-        $productIds = export::pluck('marchandises_id')->unique();
+    public function ajouter_marchandise()
+    {
+        return view('marchandise.ajouterMarchandise');
     }
+    public function ajouter_marchandise_traitement(Request $request)
+    {
+        $request->validate([
+            'name'=>'required',
+            'description'=>'required',
+            'annee'=>'required',
+            'quantite'=>'required',
+            'valeur'=>'required',
+            'TypedeFlux'=>'required',
+            'pays'=>'required',
+        ]);
+        $Marchandise = new marchandises();
+        $Marchandise->name = $request->name;
+        $Marchandise->description = $request->description;
+        $Marchandise->annee = $request->annee;
+        $Marchandise->quantite = $request->quantite;
+        $Marchandise->valeur = $request->valeur;
+        $Marchandise->TypedeFlux = $request->TypedeFlux;
+        $Marchandise->pays = $request->pays;
+        $Marchandise->save();
 
-    $products = marchandises::whereIn('id', $productIds)->get(['id', 'name']); // Assurez-vous de récupérer les colonnes id et name
-
-    return response()->json(['products' => $products]);
-}
-/*public function showSearchForm()
-{
-    // Logique pour afficher le formulaire de recherche
-    return view('search_form');
-}*/
-
-// Méthode pour afficher les résultats en fonction du flux (import ou export)
-/*public function showResults(Request $request)
-{
-    $fluxType = $request->input('flux'); // Récupérer le type de flux (import ou export)
-    $results = null;
-    $labels = null;
-
-    if ($fluxType == 'export') {
-        $results = export::all(); // Récupérer les exportations
-        $labels = $results->pluck('main_destinations'); // Pays d'origine pour les exportations
-    } else {
-        $results = import::all(); // Récupérer les importations
-        $labels = $results->pluck('country_origin'); // Pays de destination pour les importations
+        return redirect('/ajouterMarchandise')->with('status','La marchandise a bien été ajoutée avec succés.');
     }
-
-    return view('results', compact('results', 'labels', 'fluxType'));
-}*/
+    public function  update_marchandise($id)
+    {
+        $marchandises = marchandises::find($id);
+        return view('marchandise.updateMarchandise', compact('marchandises'));
+    }
+    public function  update_marchandise_traitement(Request $request)
+    {
+        $request->validate([
+            'name'=>'required',
+            'description'=>'required',
+            'annee'=>'required',
+            'quantite'=>'required',
+            'valeur'=>'required',
+            'TypedeFlux'=>'required',
+            'pays'=>'required',
+        ]);
+        $Marchandise = marchandises::find($request->id);;
+        $Marchandise->name = $request->name;
+        $Marchandise->description = $request->description;
+        $Marchandise->annee = $request->annee;
+        $Marchandise->quantite = $request->quantite;
+        $Marchandise->valeur = $request->valeur;
+        $Marchandise->TypedeFlux = $request->TypedeFlux;
+        $Marchandise->pays = $request->pays;
+        $Marchandise->update();
+        return redirect('/marchandise')->with('status','La marchandise a été modifiée avec succés.');
+    }
+    public function  delete_marchandise($id)
+    {
+        $marchandises = marchandises::find($id);
+        $marchandises->delete();
+        return redirect('/marchandise')->with('status','La marchandise a été supprimée.');
+    }
+   
 }

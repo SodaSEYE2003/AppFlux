@@ -8,87 +8,52 @@
     <title>Administrateur</title>
 </head>
 <body>
-        <div class="container">
-            <div class="topbar">
-                <div class="logo">
-                    <h2>TransTrack</h2>
-                </div>
+    <div class="container">
+        <div class="navigation">
+        <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fa fa-dashboard"></i></span>
+                        <span class="title">TransTrack</span>
+                    </a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fa fa-dashboard"></i></span>
+                        <span class="title">Tableau de bord</span>
+                    </a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fa fa-user"></i></span>
+                        <span class="title">Gestion Analyste</span>
+                    </a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fa fa-archive"></i></span>
+                        <span class="title">Gestion Marchndises</span>
+                    </a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon"><i class="fa fa-sign-out"></i></span>
+                        <span class="title">Deconnexion</span>
+                    </a>
+                </li>
+            </ul>
             </div>
-            <div class="sidebar">
-                <ul>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-tachometer"></i>
-                            <div>Tableau de bord</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                        <i class="fa fa-user"></i>
-                            <div>Gestion Analyste</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                        <i class="fa fa-archive"></i>
-                        <div>Gestion Marchandises</div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                        <i class="fa fa-sign-out"></i>
-                        <div>Deconnexion</div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="main">
-                <div class="cards">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="number">1217</div>
-                            <div class="card-name">Importations</div>
-                        </div>
-                            <div class="icon-box">
-                            <i class="fa fa-arrow-circle-down"></i></div>
-                    </div>
-                </div>
-                <div class="cards">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="number">1217</div>
-                            <div class="card-name">Importations</div>
-                        </div>
-                            <div class="icon-box">
-                            <i class="fa fa-arrow-circle-down"></i></div>
-                    </div>
-                </div>
-                <div class="cards">
-                    <div class="card">
-                        <div class="card-content">
-                            <div class="number">1217</div>
-                            <div class="card-name">Importations</div>
-                        </div>
-                            <div class="icon-box">
-                            <i class="fa fa-arrow-circle-down"></i></div>
-                    </div>
-                </div>
-                <div class="cards">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="number">1217</div>
-                        <div class="card-name">Importations</div>
-                    </div>
-                        <div class="icon-box">
-                        <i class="fa fa-arrow-circle-down"></i></div>
-                </div>
-                </div>
-                <div class="charts"></div>
-             </div>
         </div>
-
       
-    
+       
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('JS/Vendors/bootstrap.min.js') }}"></script>
     <script src="{{ asset('JS/main.js') }}"></script>

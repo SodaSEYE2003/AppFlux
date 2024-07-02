@@ -24,6 +24,7 @@ Route::get('/admin', function () {
     return view('admin');
 })->name('admin');
 
+// Gestion Analyste
 Route::get('/analyste', [AnalysteController::class, 'liste_analyste']);
 Route::get('/ajouter', [AnalysteController::class, 'ajouter_analyste']);
 Route::post('/ajouter/traitement', [AnalysteController::class, 'ajouter_analyste_traitement']);
@@ -31,6 +32,14 @@ Route::get('/update_analyste/{id}', [AnalysteController::class, 'update_analyste
 Route::post('/update/traitement', [AnalysteController::class, 'update_analyste_traitement']);
 Route::get('/delete_analyste/{id}', [AnalysteController::class, 'delete_analyste']);
 Route::get('/getProductsByFlux/{flux}', [MarchandiseController::class, 'getProductsByFlux'])->name('getProductsByFlux');
+
+
+Route::get('/marchandise', [MarchandiseController::class, 'liste_marchandise']);
+Route::get('/ajouterMarchandise', [MarchandiseController::class, 'ajouter_marchandise']);
+Route::post('/ajouterMarchandise/traitement', [MarchandiseController::class, 'ajouter_marchandise_traitement']);
+Route::get('/update_marchandise/{id}', [MarchandiseController::class, 'update_marchandise']);
+Route::post('/updateMarchandise/traitement', [MarchandiseController::class, 'update_marchandise_traitement']);
+Route::get('/delete_marchandise/{id}', [MarchandiseController::class, 'delete_marchandise']);
 
 
 // Routes contrôlées par MarchandiseController

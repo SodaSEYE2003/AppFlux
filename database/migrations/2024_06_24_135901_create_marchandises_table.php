@@ -14,6 +14,12 @@ public function up() {
     Schema::create('marchandises', function (Blueprint $table) {
         $table->id();
         $table->string('name');
+        $table->string('description');
+        $table->integer('annee');
+        $table->integer('quantite');
+        $table->integer('valeur');
+        $table->string('TypedeFlux');
+        $table->string('pays');
         $table->timestamps();
     });
 }

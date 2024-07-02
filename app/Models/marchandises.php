@@ -12,18 +12,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
     class marchandises extends Model {
         use HasFactory;
-      /*  protected $fillable = ['name'];
+            
+        use HasFactory;
+        protected $guarded = ['id'];
     
-        public function imports() {
-            return $this->hasMany(import::class);
+        public function Rapport()
+        {
+            return $this->hasMany(rapport::class);
         }
-    
-        public function exports() {
-            return $this->hasMany(export::class);
-        }
-        public function douanes() {
-            return $this->hasMany(douane::class);
-        }*/
-        protected $table = 'marchandises';
     }
 
