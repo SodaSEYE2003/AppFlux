@@ -16,7 +16,7 @@
             <a href="#">About</a>
             <a href="#">Services</a>
             <a href="#">Contact</a>
-            <button class="btnLogin-popup" onclick="window.location.href='{{ route('signUp') }}'">se connecter</button>
+            <button class="btnLogin-popup" onclick="window.location.href='{{ route('signIn') }}'">se connecter</button>
         </nav>
         
     </header>

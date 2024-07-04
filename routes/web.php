@@ -8,6 +8,10 @@ Route::get('/', function () {
     return view('accueil');
 })->name('home');
 
+// Routes contrôlées par MarchandiseController
+//Route::get('/', [MarchandiseController::class, 'index'])->name('home');
+Route::post('/search', [MarchandiseController::class, 'search'])->name('search');
+
 Route::get('/results', function () {
     return view('results');
 })->name('results');
@@ -41,7 +45,10 @@ Route::get('/update_marchandise/{id}', [MarchandiseController::class, 'update_ma
 Route::post('/updateMarchandise/traitement', [MarchandiseController::class, 'update_marchandise_traitement']);
 Route::get('/delete_marchandise/{id}', [MarchandiseController::class, 'delete_marchandise']);
 
+//Route::get('', '')->name('admin');
+//Route::get('/admin', [DashboardAdminController::class, 'index']);
+Route::get('/admin/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
 
-// Routes contrôlées par MarchandiseController
-Route::get('/', [MarchandiseController::class, 'index'])->name('home');
-Route::post('/search', [MarchandiseController::class, 'search'])->name('search');
+
+
+

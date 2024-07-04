@@ -93,7 +93,7 @@
                             <button type="submit" class="btn">Se connecter</button>
                             <div class="switchPage">
                                 <p>Vous n'avez pas de compte ?</p>
-                                <a href="signUp.html">créer un compte</a>
+                                <a href="{{ route('signUp') }}">créer un compte</a>
                             </div>    
                             
                         </form>
