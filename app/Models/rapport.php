@@ -29,8 +29,5 @@ class rapport extends Model
         return $this->hasMany(User::class);
     }
 
-    public function FluxMarchandise()
-    {
-        return $this->hasMany(flux_marchandise::class);
-    }
+
 }

@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MarchandiseController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AnalysteController;
+use App\Models\marchandises;
+
 // Route pour afficher la vue 'accueil'
 Route::get('/', function () {
     return view('accueil');
@@ -37,8 +39,12 @@ Route::get('/update_analyste/{id}', [AnalysteController::class, 'update_analyste
 Route::post('/update/traitement', [AnalysteController::class, 'update_analyste_traitement']);
 Route::get('/delete_analyste/{id}', [AnalysteController::class, 'delete_analyste']);
 Route::get('/getProductsByFlux/{flux}', [MarchandiseController::class, 'getProductsByFlux'])->name('getProductsByFlux');
+
 Route::get('/register', [AnalysteController::class, 'ajouter_analyste']);
 Route::get('/TableAnalyste', [AnalysteController::class, 'liste_analyste']);
+
+
+
 
 Route::get('/marchandise', [MarchandiseController::class, 'liste_marchandise']);
 Route::get('/ajouterMarchandise', [MarchandiseController::class, 'ajouter_marchandise']);
