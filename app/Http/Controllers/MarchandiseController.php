@@ -23,7 +23,7 @@ class MarchandiseController extends Controller
             'annee'=>'required',
             'quantite'=>'required',
             'valeur'=>'required',
-            'TypedeFlux'=>'required',
+            'TypeFlux'=>'required',
             'pays'=>'required',
         ]);
         $Marchandise = new marchandises();
@@ -32,11 +32,12 @@ class MarchandiseController extends Controller
         $Marchandise->annee = $request->annee;
         $Marchandise->quantite = $request->quantite;
         $Marchandise->valeur = $request->valeur;
-        $Marchandise->TypedeFlux = $request->TypedeFlux;
+        $Marchandise->TypeFlux = $request->TypeFlux;
         $Marchandise->pays = $request->pays;
         $Marchandise->save();
 
         return redirect('/ajouterMarchandise')->with('status','La marchandise a bien été ajoutée avec succés.');
+        return redirect('')->route('liste');
     }
     public function  update_marchandise($id)
     {
@@ -51,7 +52,7 @@ class MarchandiseController extends Controller
             'annee'=>'required',
             'quantite'=>'required',
             'valeur'=>'required',
-            'TypedeFlux'=>'required',
+            'TypeFlux'=>'required',
             'pays'=>'required',
         ]);
         $Marchandise = marchandises::find($request->id);;
@@ -60,7 +61,7 @@ class MarchandiseController extends Controller
         $Marchandise->annee = $request->annee;
         $Marchandise->quantite = $request->quantite;
         $Marchandise->valeur = $request->valeur;
-        $Marchandise->TypedeFlux = $request->TypedeFlux;
+        $Marchandise->TypeFlux = $request->TypeFlux;
         $Marchandise->pays = $request->pays;
         $Marchandise->update();
         return redirect('/marchandise')->with('status','La marchandise a été modifiée avec succés.');

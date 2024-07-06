@@ -28,7 +28,7 @@
     <div class="wrapper">
         <div class="form-box login" >
             <h2>TransTrack</h2>
-            <form action="{{ route('search') }}" method="POST" id="searchForm">
+            <form action="{{ route('liste') }}" method="POST" id="searchForm">
             @csrf
                 <div class="input-box">
                     <span class="icon"><i class="fa fa-exchange"></i></span>
@@ -45,7 +45,7 @@
                         <!-- Options des produits seront chargées dynamiquement par jQuery -->
                     </select>
                 </div>
-                <button type="submit" class="btn">Rechercher</button>
+                <button type="submit" class="btn"><a href="/liste"></a> Rechercher</button>
             </form>
         </div>
         
@@ -61,7 +61,7 @@
    $(document).ready(function () {
     $('#flux').change(function () {
         var selectedFlux = $(this).val();
-        var url = "{{ route('getProductsByFlux', ':flux') }}";
+        var url = "{{ route('liste', ':flux') }}";
         url = url.replace(':flux', selectedFlux);
 
         $.ajax({

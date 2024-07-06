@@ -12,11 +12,11 @@ Route::get('/', function () {
 
 // Routes contrôlées par MarchandiseController
 //Route::get('/', [MarchandiseController::class, 'index'])->name('home');
-Route::post('/search', [MarchandiseController::class, 'search'])->name('search');
+/*Route::post('/search', [MarchandiseController::class, 'search'])->name('search');
 
 Route::get('/results', function () {
     return view('results');
-})->name('results');
+})->name('results');*/
 
 // Route pour afficher la vue 'signUp'
 Route::get('/signUp', function () {
@@ -38,7 +38,7 @@ Route::get('/update_analyste/{id}', [AnalysteController::class, 'update_analyste
 Route::post('/update/traitement', [AnalysteController::class, 'update_analyste_traitement']);
 Route::get('/delete_analyste/{id}', [AnalysteController::class, 'delete_analyste']);
 Route::get('/getProductsByFlux/{flux}', [MarchandiseController::class, 'getProductsByFlux'])->name('getProductsByFlux');
-Route::get('/liste',[MarchandiseController::class, 'liste'])->name('liste');
+Route::post('/liste',[MarchandiseController::class, 'liste'])->name('liste');
 
 Route::get('/marchandise', [MarchandiseController::class, 'liste_marchandise']);
 Route::get('/ajouterMarchandise', [MarchandiseController::class, 'ajouter_marchandise']);
