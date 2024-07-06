@@ -8,12 +8,12 @@ class AnalysteController extends Controller
     public function liste_analyste()
     {
         $analystes= analyste::all();
-        return view('analyste.liste', compact('analystes'));
+        return view('admin.TableAnalyste', compact('analystes'));
     }
     
     public function ajouter_analyste()
     {
-        return view('analyste.ajouter');
+        return view('admin.register');
     }
     public function ajouter_analyste_traitement(Request $request)
     {
@@ -35,7 +35,7 @@ class AnalysteController extends Controller
     public function  update_analyste($id)
     {
         $analystes = analyste::find($id);
-        return view('analyste.update', compact('analystes'));
+        return view('admin.ModifierAnalyste', compact('analystes'));
     }
     public function  update_analyste_traitement(Request $request)
     {
@@ -51,7 +51,7 @@ class AnalysteController extends Controller
         $Analyste->Email = $request->Email;
         $Analyste->MotdePasse = $request->MotdePasse;
         $Analyste->update();
-        return redirect('/analyste')->with('status','L\'analyste a été modifié avec succés.');
+        return redirect('/TableAnalyste')->with('status','L\'analyste a été modifié avec succés.');
     }
     public function  delete_analyste($id)
     {
@@ -59,5 +59,12 @@ class AnalysteController extends Controller
         $analystes->delete();
         return redirect('/analyste')->with('status','L\'analyste a été supprimé.');
     }
+
+    //Connexion 
+    public function signIn()
+{
+    $analystes = analyste::all();
+    return view('signIn', ['analystes' => $analystes]);
+}
    
 }

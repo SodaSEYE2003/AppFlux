@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MarchandiseController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AnalysteController;
 // Route pour afficher la vue 'accueil'
 Route::get('/', function () {
@@ -36,7 +37,8 @@ Route::get('/update_analyste/{id}', [AnalysteController::class, 'update_analyste
 Route::post('/update/traitement', [AnalysteController::class, 'update_analyste_traitement']);
 Route::get('/delete_analyste/{id}', [AnalysteController::class, 'delete_analyste']);
 Route::get('/getProductsByFlux/{flux}', [MarchandiseController::class, 'getProductsByFlux'])->name('getProductsByFlux');
-
+Route::get('/register', [AnalysteController::class, 'ajouter_analyste']);
+Route::get('/TableAnalyste', [AnalysteController::class, 'liste_analyste']);
 
 Route::get('/marchandise', [MarchandiseController::class, 'liste_marchandise']);
 Route::get('/ajouterMarchandise', [MarchandiseController::class, 'ajouter_marchandise']);
@@ -49,6 +51,12 @@ Route::get('/delete_marchandise/{id}', [MarchandiseController::class, 'delete_ma
 //Route::get('/admin', [DashboardAdminController::class, 'index']);
 Route::get('/admin/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
 
+
+Route::get('/Diagrammes', [MarchandiseController::class, 'showChart'])->name('Diagrammes');
+//Route::controller(AuthController::class)->group(function(){
+   // Route::get('register','register')->name('register');
+   // Route::post('register','registerSave')->name('register.save');
+//});
 
 
 

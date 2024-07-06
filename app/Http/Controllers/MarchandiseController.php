@@ -71,5 +71,17 @@ class MarchandiseController extends Controller
         $marchandises->delete();
         return redirect('/marchandise')->with('status','La marchandise a été supprimée.');
     }
+    // Exemple dans votre contrôleur
+public function showChart()
+{
+    $marchandises = marchandises::all(); // Récupérez toutes les marchandises
+
+    $labels = $marchandises->pluck('pays')->toArray(); // Tableau des pays
+    $data = $marchandises->pluck('valeur')->toArray(); // Tableau des valeurs
+    $donnees=$marchandises->pluck('quantite')->toArray(); // Tableau des quantites
+    $annees=$marchandises->pluck('annee')->toArray(); // Tableau des années
+    return view('admin.Diagrammes', compact('labels', 'data', 'donnees', 'annees'));
+}
+
    
 }

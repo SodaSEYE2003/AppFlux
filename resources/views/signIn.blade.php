@@ -91,37 +91,48 @@
                                 <p class="inputName">MOT DE PASSE</p>
                             </div>
                             <button type="submit" class="btn">Se connecter</button>
-                            <div class="switchPage">
+<!--  <div class="switchPage">
                                 <p>Vous n'avez pas de compte ?</p>
                                 <a href="{{ route('signUp') }}">créer un compte</a>
                             </div>    
                             
                         </form>
                         <button class="btn" onclick="window.location.href='{{ route('home') }}'">ANNULER</button>
-                        <div id="error" class="mt-3 text-danger"></div>
+                        <div id="error" class="mt-3 text-danger"></div>--> 
                     
         
 </section>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        $(document).ready(function(){
-            // Submit form
-            $('#loginForm').submit(function(e){
-                e.preventDefault();
-                var email = $('#email').val();
-                var password = $('#password').val();
-                var userType = $('#userType').val();
-
-                        if(email === 'admin@gmail.com' && password === 'Passer2022'){
-                            // Redirect to admin dashboard
+       
+    $(document).ready(function() {
+        $('#login').click(function(){
+            var email = $('#email').val();
+            var password = $('#password').val();
+            
+            // Vérification pour l'administrateur
+            if (email === 'admin@gmail.com' && password === 'Passer2022') {
+                // Redirection vers le tableau de bord de l'administrateur
+                window.location.replace('{{ route('admin') }}');
+            } else {
+                // Vérification pour les analystes
+                @if(isset($analystes) && $analystes->count() > 0)
+                    @foreach($analystes as $analyste)
+                        if (email === '{{ $analyste->Email }}' && password === '{{ $analyste->MotdePasse }}') {
                             window.location.replace('{{ route('admin') }}');
-                        } else {
-                            $('#error').text('Identifiants administrateur incorrects');
                         }
-                    });
-            });
-     
+                    @endforeach
+                @endif
+
+                // Si aucun analyste correspondant n'est trouvé
+                $('#error').text('Vous n\'êtes pas autorisé à vous connecter');
+            }
+        });
+    });
+
+
+
     </script>
 </body>
 </html>
