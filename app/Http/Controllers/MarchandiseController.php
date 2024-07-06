@@ -71,5 +71,11 @@ class MarchandiseController extends Controller
         $marchandises->delete();
         return redirect('/marchandise')->with('status','La marchandise a été supprimée.');
     }
+
+    public function liste()
+    {
+        $produit = marchandises::all();
+        return view('liste',compact('produit'));
+    }
    
 }

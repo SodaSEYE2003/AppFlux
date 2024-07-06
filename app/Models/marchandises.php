@@ -14,7 +14,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
         use HasFactory;
             
         use HasFactory;
-        protected $guarded = ['id'];
+        protected $fillable = [
+            'name',
+            'description',
+            'annee',
+            'quantite',
+            'valeur',
+            'TypeFlux',
+            'pays'];
     
         public function Rapport()
         {
