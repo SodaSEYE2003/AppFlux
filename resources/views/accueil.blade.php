@@ -26,71 +26,25 @@
     <button class="cn"><a href="#">à propos de nous</a></button>
     </div>
     <div class="wrapper">
-        <div class="form-box login" >
+        <div class="form-box login">
             <h2>TransTrack</h2>
-            <form action="{{ route('liste') }}" method="POST" id="searchForm">
-            @csrf
+            <form action="{{ route('liste') }}" method="GET" id="searchForm">
                 <div class="input-box">
                     <span class="icon"><i class="fa fa-exchange"></i></span>
                     <label for="flux" class="content ml-auto">Choisir un flux :</label>
-                    <select class="form-control" id="flux" name="flux">
+                    <select class="form-control" id="flux" name="TypeFlux">
                         <option value="import">Importation</option>
                         <option value="export">Exportation</option>
                     </select>
                 </div>
-                <div class="input-box">
-                    <span class="icon"><i class="fa fa-archive"></i> </span>
-                    <label for="marchandise" class="content ml-auto">Entrer un produit :</label>
-                    <select class="form-control" id="marchandise" name="marchandises_id">
-                        <!-- Options des produits seront chargées dynamiquement par jQuery -->
-                    </select>
-                </div>
-                <button type="submit" class="btn"><a href="/liste"></a> Rechercher</button>
+                <button type="submit" class="btn">Rechercher</button>
             </form>
         </div>
-        
     </div>
-    
-    <!--/Header-->
 
     <!--Home-->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="{{ asset('JS/Vendors/bootstrap.min.js') }}"></script>
     <script src="{{ asset('JS/main.js') }}"></script>
-    <script>
-   $(document).ready(function () {
-    $('#flux').change(function () {
-        var selectedFlux = $(this).val();
-        var url = "{{ route('liste', ':flux') }}";
-        url = url.replace(':flux', selectedFlux);
-
-        $.ajax({
-            url: url,
-            type: 'GET',
-            success: function (response) {
-                console.log(response); // Ajoutez cette ligne pour inspecter la structure de la réponse
-                $('#marchandise').empty();
-                if (response.products && response.products.length) {
-                    $.each(response.products, function (key, value) {
-                        // Accédez directement aux propriétés id et name
-                        if (value.id && value.name) {
-                            $('#marchandise').append('<option value="' + value.id + '">' + value.name + '</option>');
-                        }
-                    });
-                } else {
-                    $('#marchandise').append('<option value="">Aucun produit trouvé</option>');
-                }
-            },
-            error: function () {
-                $('#marchandise').empty().append('<option value="">Erreur lors du chargement des produits</option>');
-            }
-        });
-    });
-
-    // Initialisation pour charger les produits au chargement de la page
-    $('#flux').trigger('change');
-});
-
-</script>
 </body>
 </html>

@@ -73,10 +73,17 @@ class MarchandiseController extends Controller
         return redirect('/marchandise')->with('status','La marchandise a été supprimée.');
     }
 
-    public function liste()
+    public function liste(Request $request)
     {
-        $produit = marchandises::all();
-        return view('liste',compact('produit'));
+        $typeFlux = $request->input('TypeFlux');
+
+        if ($typeFlux) {
+            $produit = marchandises::where('TypeFlux', $typeFlux)->get();
+        } else {
+            $produit = marchandises::all();
+        }
+
+        return view('liste', compact('produit'));
     }
    
 }
