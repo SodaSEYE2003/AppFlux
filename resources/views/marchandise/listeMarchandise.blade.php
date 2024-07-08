@@ -37,6 +37,7 @@
                     <tbody>
                     @foreach($marchandises as $Marchandises)
                         <tr>
+                             <td>{{$Marchandises->id}}</td>
                             <td>{{$Marchandises->name}}</td>
                             <td>{{$Marchandises->description}}</td>
                             <td>{{$Marchandises->annee}}</td>

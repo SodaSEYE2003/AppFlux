@@ -105,34 +105,33 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-       
     $(document).ready(function() {
-        $('#login').click(function(){
+        $('#loginForm').submit(function(e){
+            e.preventDefault(); // Empêcher l'envoi du formulaire par défaut
+            
             var email = $('#email').val();
             var password = $('#password').val();
             
             // Vérification pour l'administrateur
             if (email === 'admin@gmail.com' && password === 'Passer2022') {
                 // Redirection vers le tableau de bord de l'administrateur
-                window.location.replace('{{ route('admin') }}');
+                window.location.replace('{{ route('dashboard') }}');
             } else {
                 // Vérification pour les analystes
                 @if(isset($analystes) && $analystes->count() > 0)
                     @foreach($analystes as $analyste)
                         if (email === '{{ $analyste->Email }}' && password === '{{ $analyste->MotdePasse }}') {
-                            window.location.replace('{{ route('admin') }}');
+                            window.location.replace('{{ route('dashboard') }}');
                         }
                     @endforeach
                 @endif
 
                 // Si aucun analyste correspondant n'est trouvé
-                $('#error').text('Vous n\'êtes pas autorisé à vous connecter');
+                $('#error').text('Identifiants incorrects');
             }
         });
     });
-
-
-
-    </script>
+</script>
+    
 </body>
 </html>

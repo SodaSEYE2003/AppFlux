@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Table Analyste</title>
+    <title>Table Marchandises</title>
 
     <!-- Custom fonts for this template -->
     <link href="{{asset('admin_assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -316,43 +316,35 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">La liste des analystes</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">La liste des marchandises</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Prenom</th>
-                                        <th>Nom</th>
-                                        <th>Email</th>
-                                        <th>MotdePasse</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tfoot>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Prenom</th>
-                                            <th>Nom</th>
-                                            <th>Email</th>
-                                            <th>MotdePasse</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                </tfoot>
-                                <tbody>
-                    @foreach($analystes as $Analystes)
                         <tr>
-                            <td>{{$Analystes->id}}</td>
-                            <td>{{$Analystes->Prenom}}</td>
-                            <td>{{$Analystes->Nom}}</td>
-                            <td>{{$Analystes->Email}}</td>
-                            <td>{{$Analystes->MotdePasse}}</td>
-                            <td>
-                                <a href="/update_analyste/{{$Analystes->id}}" class="btn btn-info">Modifier</a>
-                                <a href="/delete_analyste/{{$Analystes->id}}" class="btn btn-danger">Supprimer</a>
-                            </td>
+                            <th>#</th>
+                            <th>Produit</th>
+                            <th>Description</th>
+                            <th>Annee</th>
+                            <th>Pays</th>
+                            <th>Type de Flux</th>
+                            <th>Quantite</th>
+                            <th>Valeur (USD)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($marchandises as $Marchandises)
+                        <tr>
+                             <td>{{$Marchandises->id}}</td>
+                            <td>{{$Marchandises->name}}</td>
+                            <td>{{$Marchandises->description}}</td>
+                            <td>{{$Marchandises->annee}}</td>
+                            <td>{{$Marchandises->pays}}</td>
+                            <td>{{$Marchandises->TypeFlux}}</td>
+                            <td>{{$Marchandises->quantite}}</td>
+                            <td>{{$Marchandises->valeur}}</td>
+                            
                         </tr>
                     @endforeach   
                         

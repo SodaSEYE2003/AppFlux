@@ -28,6 +28,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 }
 
 // Area Chart Example
+document.addEventListener('DOMContentLoaded', function () {
 var chartDataElement = document.getElementById('chartData');
         var labels = JSON.parse(chartDataElement.getAttribute('data-labels'));
         var data = JSON.parse(chartDataElement.getAttribute('data-data'));
@@ -118,4 +119,6 @@ var myLineChart = new Chart(ctx, {
       }
     }
   }
+
+});
 });

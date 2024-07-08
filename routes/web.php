@@ -27,10 +27,10 @@ Route::get('/signUp', function () {
 Route::get('/signIn', function () {
     return view('signIn');
 })->name('signIn');
-Route::get('/admin', function () {
-    return view('admin');
-})->name('admin');
 
+Route::get('/dashboardAnalyste', [MarchandiseController::class, 'Diag'])->name('dashboardAnalyste');
+Route::get('/dashboard', [MarchandiseController::class, 'Total'])->name('dashboard');
+Route::get('/Diagrammes', [MarchandiseController::class, 'showChart'])->name('Diagrammes');
 // Gestion Analyste
 Route::get('/analyste', [AnalysteController::class, 'liste_analyste']);
 Route::get('/ajouter', [AnalysteController::class, 'ajouter_analyste']);
@@ -44,7 +44,7 @@ Route::get('/register', [AnalysteController::class, 'ajouter_analyste']);
 Route::get('/TableAnalyste', [AnalysteController::class, 'liste_analyste']);
 
 
-
+Route::get('/TableMarchandise', [MarchandiseController::class, 'liste_marchandise']);
 
 Route::get('/marchandise', [MarchandiseController::class, 'liste_marchandise']);
 Route::get('/ajouterMarchandise', [MarchandiseController::class, 'ajouter_marchandise']);

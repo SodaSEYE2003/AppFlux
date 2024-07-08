@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Table Analyste</title>
+    <title>Diagrammes</title>
 
     <!-- Custom fonts for this template -->
     <link href="{{asset('admin_assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -21,7 +21,7 @@
     <link href="{{asset('admin_assets/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
     <!-- Custom styles for this page -->
-    <link href="{{ ('admin_assets/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
+    <link href="{{asset ('admin_assets/vendor/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
 </head>
 
@@ -43,7 +43,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="/TableAnalyste">
+                <a class="nav-link" href="/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Tableau de bord</span></a>
             </li>
@@ -117,14 +117,14 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="charts.html">
+                <a class="nav-link" href="/Diagrammes">
                     <i class="fas fa-fw fa-chart-area"></i>
                     <span>Diagrammes</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item active">
-                <a class="nav-link" href="tables.html">
+                <a class="nav-link" href="/TableMarchandise">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
             </li>
@@ -359,10 +359,7 @@
 
 <!-- Page Heading -->
 <h1 class="h3 mb-2 text-gray-800">Statistiques des flux</h1>
-<p class="mb-4">Chart.js is a third party plugin that is used to generate the charts in this theme.
-    The charts below have been customized - for further customization options, please visit the <a
-        target="_blank" href="https://www.chartjs.org/docs/latest/">official Chart.js
-        documentation</a>.</p>
+<p class="mb-4">Les statistiques sur les flux de marchandises importées et exportées au Sénégal révèlent les tendances des produits échangés et les principaux partenaires commerciaux. Ces données sont essentielles pour les décideurs et les investisseurs afin de comprendre le marché et prendre des décisions éclairées.</p>
 
 <!-- Content Row -->
 <div class="row">
@@ -375,16 +372,13 @@
                 <h6 class="m-0 font-weight-bold text-primary">Valeur(USD)</h6>
             </div>
             <div class="card-body">
-                <div class="chart-area"
-                 id="chartData"
-                    data-labels="{{ json_encode($labels) }}"
-                    data-data="{{ json_encode($data) }}">
-            
-                    <canvas id="myAreaChart"></canvas>
-                </div>
+            <div class="chart-area" id="chartData"
+                data-labels="{{ json_encode($labels) }}"
+                data-data="{{ json_encode($data) }}">
+                <canvas id="myAreaChart"></canvas>
+            </div>
                 <hr>
-                Représentation des valeurs des flux entrants-sortants en fonction des pays
-                <code>/js/demo/chart-area-demo.js</code>.
+                Représentation des valeurs des flux entrants-sortants en fonction des pays.
             </div>
         </div>
 
@@ -400,8 +394,7 @@
                     <canvas id="myBarChart"></canvas>
                 </div>
                 <hr>
-                Représentation des valeurs des flux entrants-sortants en fonction des années
-                <code>/js/demo/chart-bar-demo.js</code> .
+                Représentation des valeurs des flux entrants-sortants en fonction des années.
             </div>
         </div>
 
@@ -412,17 +405,17 @@
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Quanite (Tonnes ou unites)</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Nombre total de flux entrants et sortants</h6>
             </div>
             <!-- Card Body -->
             <div class="card-body">
-                <div class="chart-pie pt-4" id="chartPie"
-                    data-donnees="{{ json_encode($donnees) }}">
-                    <canvas id="myPieChart"></canvas>
-                </div>
+            <div class="chart-pie pt-4" id="chartPie"
+            data-export="{{ json_encode([$nombreExportations]) }}"
+            data-import="{{ json_encode([$nombreImportations]) }}">
+            <canvas id="myPieChart"></canvas>
+            </div>
                 <hr>
-                Représentation des quantites des flux entrants-sortants 
-                <code>/js/demo/chart-pie-demo.js</code>.
+                Représentation des quantites des flux entrants-sortants .
             </div>
         </div>
     </div>
@@ -491,7 +484,236 @@
 
     <!-- Page level custom scripts -->
     <script src="{{asset('admin_assets/js/demo/datatables-demo.js')}}"></script>
+    <script src="{{asset('admin_assets/js/demo/chart-area-demo.js')}}"></script>
+    <script src="{{asset('admin_assets/js/demo/chart-pie-demo.js')}}"></script>
+    <script src="{{asset('admin_assets/js/demo/chart-bar-demo.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var chartDataElement = document.getElementById('chartData');
+            var labels = JSON.parse(chartDataElement.getAttribute('data-labels'));
+            var data = JSON.parse(chartDataElement.getAttribute('data-data'));
+            
+            // Debugging: Output data to console
+            console.log(labels, data);
 
+            var ctx = document.getElementById("myAreaChart").getContext('2d');
+            var myLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: "Valeur(USD)",
+                        lineTension: 0.3,
+                        backgroundColor: "rgba(78, 115, 223, 0.05)",
+                        borderColor: "rgba(78, 115, 223, 1)",
+                        pointRadius: 3,
+                        pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                        pointBorderColor: "rgba(78, 115, 223, 1)",
+                        pointHoverRadius: 3,
+                        pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                        pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                        pointHitRadius: 10,
+                        pointBorderWidth: 2,
+                        data: data
+                    }],
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    layout: {
+                        padding: {
+                            left: 10,
+                            right: 25,
+                            top: 25,
+                            bottom: 0
+                        }
+                    },
+                    scales: {
+                        xAxes: [{
+                            time: {
+                                unit: 'date'
+                            },
+                            gridLines: {
+                                display: false,
+                                drawBorder: false
+                            },
+                            ticks: {
+                                maxTicksLimit: 7
+                            }
+                        }],
+                        yAxes: [{
+                            ticks: {
+                                maxTicksLimit: 5,
+                                padding: 10,
+                                // Include a dollar sign in the ticks
+                                callback: function(value, index, values) {
+                                    return '$' + number_format(value);
+                                }
+                            },
+                            gridLines: {
+                                color: "rgb(234, 236, 244)",
+                                zeroLineColor: "rgb(234, 236, 244)",
+                                drawBorder: false,
+                                borderDash: [2],
+                                zeroLineBorderDash: [2]
+                            }
+                        }],
+                    },
+                    legend: {
+                        display: false
+                    },
+                    tooltips: {
+                        backgroundColor: "rgb(255,255,255)",
+                        bodyFontColor: "#858796",
+                        titleMarginBottom: 10,
+                        titleFontColor: '#6e707e',
+                        titleFontSize: 14,
+                        borderColor: '#dddfeb',
+                        borderWidth: 1,
+                        xPadding: 15,
+                        yPadding: 15,
+                        displayColors: false,
+                        intersect: false,
+                        mode: 'index',
+                        caretPadding: 10,
+                        callbacks: {
+                            label: function(tooltipItem, chart) {
+                                var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                                return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+        var chartDataElement = document.getElementById('chartDonnees');
+        var labels = JSON.parse(chartDataElement.getAttribute('data-annees'));
+        var data = JSON.parse(chartDataElement.getAttribute('data-data'));
+var ctx = document.getElementById("myBarChart");
+var myBarChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels:labels,
+    datasets: [{
+      label: "Valeur(USD)",
+      backgroundColor: "#4e73df",
+      hoverBackgroundColor: "#2e59d9",
+      borderColor: "#4e73df",
+      data:data
+    }],
+  },
+  options: {
+    maintainAspectRatio: false,
+    layout: {
+      padding: {
+        left: 10,
+        right: 25,
+        top: 25,
+        bottom: 0
+      }
+    },
+    scales: {
+      xAxes: [{
+        time: {
+          unit: 'month'
+        },
+        gridLines: {
+          display: false,
+          drawBorder: false
+        },
+        ticks: {
+          maxTicksLimit: 6
+        },
+        maxBarThickness: 25,
+      }],
+      yAxes: [{
+        ticks: {
+          min: 0,
+          max: 15000,
+          maxTicksLimit: 5,
+          padding: 10,
+          // Include a dollar sign in the ticks
+          callback: function(value, index, values) {
+            return '$' + number_format(value);
+          }
+        },
+        gridLines: {
+          color: "rgb(234, 236, 244)",
+          zeroLineColor: "rgb(234, 236, 244)",
+          drawBorder: false,
+          borderDash: [2],
+          zeroLineBorderDash: [2]
+        }
+      }],
+    },
+    legend: {
+      display: false
+    },
+    tooltips: {
+      titleMarginBottom: 10,
+      titleFontColor: '#6e707e',
+      titleFontSize: 14,
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
+      borderColor: '#dddfeb',
+      borderWidth: 1,
+      xPadding: 15,
+      yPadding: 15,
+      displayColors: false,
+      caretPadding: 10,
+      callbacks: {
+        label: function(tooltipItem, chart) {
+          var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+        }
+      }
+    },
+  }
+});
+ </script>
+ <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var chartDataElement = document.getElementById('chartPie');
+            var exportCount = JSON.parse(chartDataElement.getAttribute('data-export'));
+            var importCount = JSON.parse(chartDataElement.getAttribute('data-import'));
+            
+            var labels = ['Exportations', 'Importations'];
+            var data = [exportCount[0], importCount[0]];
+
+            var ctx = document.getElementById("myPieChart").getContext('2d');
+            var myPieChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: ['#4e73df', '#1cc88a'],
+                        hoverBackgroundColor: ['#2e59d9', '#17a673'],
+                        hoverBorderColor: "rgba(234, 236, 244, 1)",
+                    }],
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        backgroundColor: "rgb(255,255,255)",
+                        bodyFontColor: "#858796",
+                        borderColor: '#dddfeb',
+                        borderWidth: 1,
+                        xPadding: 15,
+                        yPadding: 15,
+                        displayColors: false,
+                        caretPadding: 10,
+                    },
+                    legend: {
+                        display: false
+                    },
+                    cutoutPercentage: 80,
+                },
+            });
+        });
+    </script>
 </body>
 
 </html>
