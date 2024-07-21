@@ -209,7 +209,7 @@
                 <li class="alert alert-danger">{{ $error }}</li>
                 @endforeach
              </ul>
-            <form action="/ajouterMarchandise/traitement" method="POST" class=form-groupid" id="contactForm" data-sb-form-api-token="API_TOKEN">
+            <form action="/ajouterMarchandise/traitement" method="POST" class="form-groupid" id="contactForm" data-sb-form-api-token="API_TOKEN">
                 @csrf
                 <div class="form-group">
                     <label for="name">Produit</label>

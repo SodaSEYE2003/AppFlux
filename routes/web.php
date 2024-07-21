@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MarchandiseController;
-use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AnalysteController;
 use App\Models\marchandises;
 
@@ -13,21 +12,20 @@ Route::get('/', function () {
 
 // Routes contrôlées par MarchandiseController
 //Route::get('/', [MarchandiseController::class, 'index'])->name('home');
-Route::post('/search', [MarchandiseController::class, 'search'])->name('search');
+/*Route::post('/search', [MarchandiseController::class, 'search'])->name('search');
 
 Route::get('/results', function () {
     return view('results');
-})->name('results');
+})->name('results');*/
 
 // Route pour afficher la vue 'signUp'
 Route::get('/signUp', function () {
     return view('signUp');
 })->name('signUp');
 
-Route::get('/signIn', function () {
-    return view('signIn');
-})->name('signIn');
 
+
+Route::get('/signIn', [AnalysteController::class, 'listeAnalyste'])->name('signIn');;
 Route::get('/dashboardAnalyste', [MarchandiseController::class, 'Diag'])->name('dashboardAnalyste');
 Route::get('/dashboard', [MarchandiseController::class, 'Total'])->name('dashboard');
 Route::get('/Diagrammes', [MarchandiseController::class, 'showChart'])->name('Diagrammes');
@@ -40,11 +38,15 @@ Route::post('/update/traitement', [AnalysteController::class, 'update_analyste_t
 Route::get('/delete_analyste/{id}', [AnalysteController::class, 'delete_analyste']);
 Route::get('/getProductsByFlux/{flux}', [MarchandiseController::class, 'getProductsByFlux'])->name('getProductsByFlux');
 
+
 Route::get('/register', [AnalysteController::class, 'ajouter_analyste']);
 Route::get('/TableAnalyste', [AnalysteController::class, 'liste_analyste']);
 
 
 Route::get('/TableMarchandise', [MarchandiseController::class, 'liste_marchandise']);
+
+Route::get('/liste', [MarchandiseController::class, 'liste'])->name('liste');
+
 
 Route::get('/marchandise', [MarchandiseController::class, 'liste_marchandise']);
 Route::get('/ajouterMarchandise', [MarchandiseController::class, 'ajouter_marchandise']);
@@ -57,12 +59,6 @@ Route::get('/delete_marchandise/{id}', [MarchandiseController::class, 'delete_ma
 //Route::get('/admin', [DashboardAdminController::class, 'index']);
 Route::get('/admin/dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index'])->name('admin.dashboard');
 
-
-Route::get('/Diagrammes', [MarchandiseController::class, 'showChart'])->name('Diagrammes');
-//Route::controller(AuthController::class)->group(function(){
-   // Route::get('register','register')->name('register');
-   // Route::post('register','registerSave')->name('register.save');
-//});
 
 
 

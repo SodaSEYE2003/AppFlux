@@ -10,6 +10,11 @@ class AnalysteController extends Controller
         $analystes= analyste::all();
         return view('admin.TableAnalyste', compact('analystes'));
     }
+    public function listeAnalyste()
+    {
+        $analystes= analyste::all();
+        return view('signIn', compact('analystes'));
+    }
     
     public function ajouter_analyste()
     {

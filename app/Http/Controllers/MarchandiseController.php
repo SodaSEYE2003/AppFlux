@@ -82,8 +82,8 @@ public function showChart()
     $data = $marchandises->pluck('valeur')->toArray(); // Tableau des valeurs
     $donnees=$marchandises->pluck('quantite')->toArray(); // Tableau des quantites
     $annees=$marchandises->pluck('annee')->toArray(); // Tableau des années
-    $nombreExportations = Marchandises::where('TypeFlux', 'export')->count();
-    $nombreImportations = Marchandises::where('TypeFlux', 'import')->count();
+    $nombreExportations = marchandises::where('TypeFlux', 'export')->count();
+    $nombreImportations = marchandises::where('TypeFlux', 'import')->count();
     
     return view('admin.Diagrammes', compact('labels', 'data', 'donnees', 'annees','nombreExportations', 'nombreImportations'));
 }
@@ -95,26 +95,26 @@ public function Diag()
     $data = $marchandises->pluck('valeur')->toArray(); // Tableau des valeurs
     $donnees=$marchandises->pluck('quantite')->toArray(); // Tableau des quantites
     $annees=$marchandises->pluck('annee')->toArray(); // Tableau des années
-    $nombreExportations = Marchandises::where('TypeFlux', 'export')->count();
-    $nombreImportations = Marchandises::where('TypeFlux', 'import')->count();
+    $nombreExportations = marchandises::where('TypeFlux', 'export')->count();
+    $nombreImportations = marchandises::where('TypeFlux', 'import')->count();
     
     return view('analyste.dashboardAnalyste', compact('marchandises','labels', 'data', 'donnees', 'annees','nombreExportations', 'nombreImportations'));
 }
 
 public function Total(){
-    $marchandises = Marchandises::all();
+    $marchandises = marchandises::all();
 
     // Calculer la valeur totale des marchandises
-    $valeurTotale = Marchandises::sum('valeur');
+    $valeurTotale = marchandises::sum('valeur');
 
     // Calculer la quantité totale des marchandises
-    $quantiteTotale = Marchandises::sum('quantite');
+    $quantiteTotale = marchandises::sum('quantite');
 
     // Calculer le nombre total d'exportations
-    $nombreExportations = Marchandises::where('TypeFlux', 'export')->count();
+    $nombreExportations = marchandises::where('TypeFlux', 'export')->count();
 
     // Calculer le nombre total d'importations
-    $nombreImportations = Marchandises::where('TypeFlux', 'import')->count();
+    $nombreImportations = marchandises::where('TypeFlux', 'import')->count();
     $totalFlux = $nombreExportations + $nombreImportations;
 
     // Calcul des pourcentages
@@ -123,6 +123,15 @@ public function Total(){
 
 
     return view('admin.dashboard', compact('marchandises', 'valeurTotale', 'quantiteTotale', 'nombreExportations', 'nombreImportations', 'pourcentageExportations','pourcentageImportations'));
+}
+public function liste(Request $request){
+    $typeFlux=  $request->input('TypeFlux');
+    if ($typeFlux) {
+        $produit = marchandises::where('TypeFlux', $typeFlux)->get();
+    }else {
+        $produit =marchandises::all();
+    }
+    return view('liste', compact('produit'));
 }
    
 }

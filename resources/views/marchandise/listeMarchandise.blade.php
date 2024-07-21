@@ -42,7 +42,7 @@
                             <td>{{$Marchandises->description}}</td>
                             <td>{{$Marchandises->annee}}</td>
                             <td>{{$Marchandises->pays}}</td>
-                            <td>{{$Marchandises->TypedeFlux}}</td>
+                            <td>{{$Marchandises->TypeFlux}}</td>
                             <td>{{$Marchandises->quantite}}</td>
                             <td>{{$Marchandises->valeur}}</td>
                             <td>

@@ -40,7 +40,7 @@
                 </div>
                 <div class="form-group">
                     <label for="TypedeFlux" class="form-label">Type de Flux</label>
-                    <input type="text" class="form-control" id="TypedeFlux" name="TypedeFlux">
+                    <input type="text" class="form-control" id="TypedeFlux" name="TypeFlux">
                 </div>
                 <div class="form-group">
                     <label for="quantite" class="form-label">Quantite</label>
